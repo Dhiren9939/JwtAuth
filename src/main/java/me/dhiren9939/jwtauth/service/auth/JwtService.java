@@ -3,7 +3,6 @@ package me.dhiren9939.jwtauth.service.auth;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import me.dhiren9939.jwtauth.entity.User;
-import me.dhiren9939.jwtauth.exceptions.InvalidJwtException;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -33,12 +32,12 @@ public class JwtService {
         try {
             Claims claims = getAllClaims(token);
             return !claims.getExpiration().before(new Date());
-        } catch (JwtException e) {
-            throw new InvalidJwtException("invalid auth token");
+        } catch (Exception e) {
+            return false;
         }
     }
 
-    private Claims getAllClaims(String token) {
+    private Claims getAllClaims(String token) throws JwtException, IllegalArgumentException {
         return jwtParser.parseSignedClaims(token).getPayload();
     }
 }

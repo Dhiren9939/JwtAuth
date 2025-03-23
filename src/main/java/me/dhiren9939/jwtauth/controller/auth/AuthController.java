@@ -15,7 +15,7 @@ import java.util.Map;
 @RestController
 public class AuthController {
 
-    AuthService service;
+    private final AuthService service;
 
     public AuthController(AuthService service) {
         this.service = service;
