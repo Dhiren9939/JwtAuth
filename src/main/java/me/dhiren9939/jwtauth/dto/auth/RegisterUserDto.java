@@ -3,7 +3,7 @@ package me.dhiren9939.jwtauth.dto.auth;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class RegisterUserDto extends LoginUserDto{
+public class RegisterUserDto extends LoginUserDto {
 
     @NotBlank(message = "username cannot be empty")
     @Size(min = 3,max = 32,message = "username must be of size 3 to 32")

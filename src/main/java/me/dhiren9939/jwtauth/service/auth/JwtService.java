@@ -37,7 +37,7 @@ public class JwtService {
         }
     }
 
-    private Claims getAllClaims(String token) throws JwtException, IllegalArgumentException {
+    public Claims getAllClaims(String token) throws JwtException, IllegalArgumentException {
         return jwtParser.parseSignedClaims(token).getPayload();
     }
 }
