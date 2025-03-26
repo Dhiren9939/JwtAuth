@@ -18,18 +18,17 @@ import java.util.ArrayList;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
 
-    public JwtAuthenticationFilter(JwtService jwtService) {
+    private final PublicRouteSkipper routeSkipper;
+
+    public JwtAuthenticationFilter(JwtService jwtService, PublicRouteSkipper routeSkipper) {
         this.jwtService = jwtService;
+       this.routeSkipper = routeSkipper;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        // the skip the public routes becuz the filter chain is not doing
-        // it by default
-        if (request.getRequestURI().startsWith("/api/auth")) {
-            filterChain.doFilter(request, response);
+        if(routeSkipper.ifPublicSkipFilter(request,response,filterChain))
             return;
-        }
 
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
