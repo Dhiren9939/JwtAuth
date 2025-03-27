@@ -1,4 +1,4 @@
-package me.dhiren9939.jwtauth.controller.auth;
+package me.dhiren9939.jwtauth.controller;
 
 import jakarta.validation.Valid;
 import me.dhiren9939.jwtauth.dto.auth.LoginUserDto;

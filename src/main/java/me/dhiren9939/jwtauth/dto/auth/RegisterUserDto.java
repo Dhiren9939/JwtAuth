@@ -5,8 +5,8 @@ import jakarta.validation.constraints.Size;
 
 public class RegisterUserDto extends LoginUserDto {
 
-    @NotBlank(message = "username cannot be empty")
-    @Size(min = 3,max = 32,message = "username must be of size 3 to 32")
+    @NotBlank(message = "Username cannot be empty.")
+    @Size(min = 3,max = 32,message = "Username must be of 3 to 32 characters.")
     private String username;
 
     public RegisterUserDto() {

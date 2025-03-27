@@ -32,7 +32,7 @@ public class JwtService {
         try {
             Claims claims = getAllClaims(token);
             return !claims.getExpiration().before(new Date());
-        } catch (Exception e) {
+        } catch (JwtException | IllegalArgumentException e) {
             return false;
         }
     }

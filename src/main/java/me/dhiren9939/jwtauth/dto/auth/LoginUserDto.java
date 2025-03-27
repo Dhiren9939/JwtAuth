@@ -7,12 +7,12 @@ import jakarta.validation.constraints.Size;
 
 public class LoginUserDto {
 
-    @NotBlank(message = "email cannot be empty")
-    @Email(message = "invalid email format")
+    @NotBlank(message = "Email cannot be empty.")
+    @Email(message = "Invalid email format.")
     private String email;
 
-    @NotBlank(message = "password cannot be empty")
-    @Size(min = 8,max = 32,message = "password must be of length 8 to 32")
+    @NotBlank(message = "Password cannot be empty.")
+    @Size(min = 8,max = 32,message = "Password must have 8 to 32 characters.")
     private String password;
 
     public LoginUserDto() {
