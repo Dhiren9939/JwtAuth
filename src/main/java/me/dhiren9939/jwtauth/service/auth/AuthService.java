@@ -5,10 +5,12 @@ import me.dhiren9939.jwtauth.dto.auth.RegisterUserDto;
 import me.dhiren9939.jwtauth.entity.User;
 import me.dhiren9939.jwtauth.exceptions.InvalidCredentialsException;
 import me.dhiren9939.jwtauth.exceptions.UserAlreadyExistsException;
+import me.dhiren9939.jwtauth.exceptions.UserNotFoundException;
 import me.dhiren9939.jwtauth.repository.UserRepo;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -34,6 +36,15 @@ public class AuthService {
         user.setEmail(userDto.getEmail());
         user.setPasswordHash(passwordEncoder.encode(userDto.getPassword()));
         return repo.save(user);
+    }
+
+    public void removeUser(LoginUserDto userDto){
+        try{
+            User user = repo.findByEmail(userDto.getEmail()).orElseThrow();
+            repo.delete(user);
+        } catch (NoSuchElementException e) {
+            throw new InvalidCredentialsException("Invalid credentials.");
+        }
     }
 
     public String authenticateUser(LoginUserDto userDto) {

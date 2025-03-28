@@ -18,7 +18,7 @@ public class JwtValidatorController {
         this.jwtService = jwtService;
     }
 
-    @PostMapping("/api/auth/verify-jwt")
+    @PostMapping("/api/public/verify-jwt")
     public Map<Object,Object> verifyJwts(@Valid @RequestBody JwtValidationDto jwtDto) {
         return Map.of(
                 "tokenStatus", jwtService.isTokenValid(jwtDto.getToken()) ? "valid" : "invalid"

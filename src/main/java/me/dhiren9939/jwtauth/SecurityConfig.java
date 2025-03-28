@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    public static final String[] PUBLIC_ROUTES = {"/api/auth/**", "/h2-console/**"};
+    public static final String[] PUBLIC_ROUTES = {"/api/public/**", "/h2-console/**"};
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
